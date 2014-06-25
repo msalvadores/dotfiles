@@ -1,0 +1,48 @@
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="powerline-with-tmux"
+
+plugins=(git golang brew osx tmux copydir copyfile)
+
+source $ZSH/oh-my-zsh.sh
+
+# Customize to your needs...
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+alias ll='ls -lah'
+alias h='history | grep'
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/:/usr/lib/pkgconfig
+export HISTSIZE=10000
+
+unsetopt correct_all
+
+
+export PATH="$HOME/.rbenv/bin:${PATH}"
+eval "$(rbenv init -)"
+
+export WORKON_HOME=~/Envs
+source /usr/local/bin/virtualenvwrapper.sh
+
+#4store needs to open a lot of files
+ulimit -S -n 2048
+
+export EDITOR='vim'
+
+#powerline theme options
+POWERLINE_HIDE_HOST_NAME="true"
+POWERLINE_HIDE_USER_NAME="true"
+POWERLINE_RIGHT_B="none"
+POWERLINE_RIGHT_A="exit-status"
+POWERLINE_DISABLE_RPROMPT="yes"
+source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+
+#useful alias
+alias wget="curl -OL"
+alias br="bundle exec ruby"
+alias brr="bundle exec rake"
+alias br="bundle exec ruby"
+alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'

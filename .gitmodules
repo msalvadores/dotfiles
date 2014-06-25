@@ -1,0 +1,27 @@
+[submodule "dots/vim/bundle/ctrlp.vim"]
+	path = dots/vim/bundle/ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim
+[submodule "dots/vim/bundle/nerdtree"]
+	path = dots/vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "dots/vim/bundle/vim-colors"]
+	path = dots/vim/bundle/vim-colors
+	url = https://github.com/flazz/vim-colorschemes
+[submodule "dots/vim/bundle/vim-golang"]
+	path = dots/vim/bundle/vim-golang
+	url = https://github.com/jnwhiteh/vim-golang
+[submodule "dots/vim/bundle/vim-syntastic"]
+	path = dots/vim/bundle/vim-syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule "dots/vim/bundle/vim-airline"]
+	path = dots/vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
+[submodule "dots/vim/bundle/vim-gitgutter"]
+	path = dots/vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "dots/vim/bundle/tmuxline.vim"]
+	path = dots/vim/bundle/tmuxline.vim
+	url = https://github.com/edkolev/tmuxline.vim
+[submodule "dots/vim/bundle/vim-easymotion"]
+	path = dots/vim/bundle/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion
