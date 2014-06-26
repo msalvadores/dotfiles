@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+curl -XPOST 'localhost:9000/update/' -d 'update=DELETE%20%7B%3Fs%20%3Fp%20%3Fo%20%7D%20WHERE%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D'
+curl 'localhost:9000/status/size/'

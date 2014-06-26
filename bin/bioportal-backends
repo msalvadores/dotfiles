@@ -1,0 +1,61 @@
+#!/bin/zsh
+# starts|stops all the backend systems to develop bioportal 
+# redis, solr and 4store in a TMUX session
+
+BASE="$WORKTMP"
+SNAME="bioportal-backends"
+
+if [[ $1 = "start" ]];then
+    echo "Starting BioPortal backends redis, solr and 4store ..."
+    sleep 1
+
+    tmux new-session -d -s "$SNAME" -n "backends"
+    tmux send-keys -t "$SNAME:1" "cd $BASE" C-m
+
+    FSTORE_KILL=("killall 4s-boss" "killall 4s-backend" "killall 4s-httpd")
+    for (( i = 1; i <= $#FSTORE_KILL; i++ ))
+    do
+        tmux send-keys -t "$SNAME:1" "$FSTORE_KILL[$i]" C-m
+    done
+    FSTORE_START=("4s-boss"
+                  "4s-backend-setup --segments 4 demo" 
+                  "4s-backend demo" "4s-httpd -s-1 -R -p 9000 -D demo")
+    for (( i = 1; i <= $#FSTORE_START; i++ ))
+    do
+        tmux send-keys -t "$SNAME:1" "$FSTORE_START[$i]" C-m
+    done
+    tmux split-window -t "$SNAME:1" -v 
+    tmux send-keys -t "$SNAME:1" "killall redis-server" C-m
+    tmux send-keys -t "$SNAME:1" "rm dump.rdb" C-m
+    tmux send-keys -t "$SNAME:1" "redis-server" C-m
+
+    tmux split-window -t "$SNAME:1" -v 
+    tmux send-keys -t "$SNAME:1" "cd /usr/local/Cellar/solr/4.7.2/libexec/ncbo" C-m
+    tmux send-keys -t "$SNAME:1" "java -jar start.jar" C-m
+
+    tmux select-window -t "$SNAME:1"
+    tmux attach-session -t "$SNAME"
+else
+    if [[ $1 = "stop" ]];then
+        echo "Searching for BipoPortal backends ..."
+        solr=$(ps aux | grep java | grep start | awk '{print $2}')
+        redis=$(ps aux | grep redis-server | grep -v grep | awk '{print $2}')
+        sleep 1
+        echo "Stopping solr PID", $solr,
+        kill $solr
+        echo "Stopping redis PID", $redis
+        kill $redis
+        echo "Stopping 4s-httpd"
+        pkill 4s-httpd
+        echo "Stopping 4s-backend"
+        pkill 4s-backend
+        echo "Stopping 4s-boss"
+        pkill 4s-boss
+        echo "Stopping tmux session"
+        tmux kill-session -t bioportal-backends
+        echo "Done!"
+    else
+        echo "usage: bp-backends <start|stop>"
+        exit -1
+    fi
+fi

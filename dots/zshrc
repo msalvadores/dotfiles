@@ -13,7 +13,6 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 alias ll='ls -lah'
 alias h='history | grep'
 
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/:/usr/lib/pkgconfig
 export HISTSIZE=10000
 
 unsetopt correct_all
@@ -39,6 +38,8 @@ POWERLINE_DISABLE_RPROMPT="yes"
 source /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export PYTHONPATH=.:~/.dotfiles/dots/ipython/utils
+export PATH=$PATH:~/.dotfiles/bin
 
 #useful alias
 alias wget="curl -OL"
@@ -46,3 +47,7 @@ alias br="bundle exec ruby"
 alias brr="bundle exec rake"
 alias br="bundle exec ruby"
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
+
+if [[ -f .private-vars && -r .private-vars ]]; then
+    source .private-vars
+fi
