@@ -17,3 +17,6 @@
 
 6. Set links
     - ./setlinks
+
+7. In OSX
+    - cd osx; ./defaults

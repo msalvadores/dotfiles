@@ -9,7 +9,6 @@ zmodload -ap zsh/mapfile mapfile
 function runinstall {
     name=$1
     list=$2
-    cmd=$3
     file_lines=( "${(f@)mapfile[$list]}" )
     linesn=$(($#file_lines - 1))
     echo "Installing $linesn $name apps ..."
@@ -21,7 +20,11 @@ function runinstall {
         if [[ $name = "cask" ]];then
             bout=`brew cask install $formula` 2>&1 | read berr
         else
-            bout=`brew install $formula` 2>&1 | read berr
+            if [[ $name = "brew" ]];then
+                bout=`brew install $formula` 2>&1 | read berr
+            else
+                bout=`pip install $formula` 2>&1 | read berr
+            fi
         fi
         if echo $berr | grep -qi "Error:"  ; then;
             echo -e "  ${red}[KO]${NC}"
@@ -36,16 +39,12 @@ function runinstall {
 #tap for caskroom
 brew tap caskroom/cask
 
-runinstall "brew" "brew.list" "brew install"
-runinstall "cask" "cask.list" "brew cask install"
+runinstall "brew" "brew.list"
+runinstall "cask" "cask.list"
 easy_install pip
-runinstall "pip" "pip.list" "pip install"
+runinstall "pip" "pip.list"
 
 echo "installing ruby"
 rbenv install 2.1.2
 rbenv local 2.1.2
 gem install bundler
-
-echo "installing vim"
-#vim is a bit special
-brew install vim --with-python --with-ruby --with-perl --override-system-vim
