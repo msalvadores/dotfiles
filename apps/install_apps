@@ -12,7 +12,7 @@ function runinstall {
     cmd=$3
     file_lines=( "${(f@)mapfile[$list]}" )
     linesn=$(($#file_lines - 1))
-    echo "Installing $linesn $name formulas ..."
+    echo "Installing $linesn $name apps ..."
     sleep 1
     for (( i = 1; i <= $linesn; i++ ))
     do
@@ -33,5 +33,19 @@ function runinstall {
     done
 }
 
-runinstall "brew" "brew.list" "install"
-runinstall "cask" "cask.list" "cask install"
+#tap for caskroom
+brew tap caskroom/cask
+
+runinstall "brew" "brew.list" "brew install"
+runinstall "cask" "cask.list" "brew cask install"
+easy_install pip
+runinstall "pip" "pip.list" "pip install"
+
+echo "installing ruby"
+rbenv install 2.1.2
+rbenv local 2.1.2
+gem install bundler
+
+echo "installing vim"
+#vim is a bit special
+brew install vim --with-python --with-ruby --with-perl --override-system-vim

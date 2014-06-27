@@ -1,0 +1,33 @@
+#!/bin/zsh
+
+DOTS=(".zshrc" ".vimrc" ".vim" ".slate" ".tmux.conf" ".gitconfig" ".gitignore")
+mkdir ~/.bck-dots
+for (( i = 1; i <= $#DOTS; i++ ))
+do
+    if [[ -f $DOTS[$i] || -d $DOTS[$i] ]];then
+        mv $DOTS[$i] ~/.bck-dots
+    fi
+done
+
+ln -s ~/.dotfiles/dots/vimrc ~/.vimrc
+ln -s ~/.dotfiles/dots/vim ~/.vim
+ln -s ~/.dotfiles/dots/slate ~/.slate
+ln -s ~/.dotfiles/dots/tmux.conf ~/.tmux.conf
+ln -s ~/.dotfiles/dots/gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/dots/gitignore ~/.gitignore
+
+#my custom powerline oh-my-zsh theme
+ln -s ~/.dotfiles/dots/oh-my-zsh/themes/powerline-with-tmux.zsh-theme ~/.oh-my-zsh/themes/powerline-with-tmux.zsh-theme 
+
+#sparql ipython profile
+mkdir -p ~/.ipython/profile_sparql/
+ln -s ~/.dotfiles/dots/ipython/profile_sparql/ipython_config.py ~/.ipython/profile_sparql/ipython_config.py
+
+#use brew's libxml
+ln -s /usr/local/Cellar/libxml2/2.9.1/lib/pkgconfig/libxml-2.0.pc /usr/local/lib/pkgconfig/libxml-2.0.pc
+
+#add brew autocompletion to zsh
+ln -s "$(brew --prefix)/Library/Contributions/brew_zsh_completion.zsh" /usr/local/share/zsh/site-functions
+
+ln -s ~/.dotfiles/osx/pbcopy.plist ~/Library/LaunchAgents/pbcopy.plist
+launchctl load ~/Library/LaunchAgents/pbcopy.plist
