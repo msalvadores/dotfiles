@@ -29,7 +29,7 @@ function runinstall {
         else
             echo -e "  ${green}[OK]${NC}"
         fi
-        echo $berr >> cask.log
+        echo $berr >> install.log
     done
 }
 
