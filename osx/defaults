@@ -187,3 +187,7 @@ defaults write com.apple.DiskUtility advanced-image-options -bool true
 
 #Copy powerline fonts
 cp -f ~/.dotfiles/osx/fonts/* ~/Library/Fonts
+
+#Disable ambient light auto adjust keyboard and display
+defaults write com.apple.BezelServices dAuto -boolean false
+defaults write com.apple.BezelServices 'kDim' -bool false
