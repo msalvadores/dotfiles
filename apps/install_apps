@@ -41,7 +41,6 @@ brew tap caskroom/cask
 
 runinstall "brew" "brew.list"
 runinstall "cask" "cask.list"
-easy_install pip
 runinstall "pip" "pip.list"
 
 echo "installing ruby"
