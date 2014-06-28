@@ -21,3 +21,9 @@
 
 7. In OSX
     - cd osx; ./defaults
+
+# EXTRA
+
+For patched fonts follow instructions here:
+
+http://superuser.com/questions/762345/powerline-patched-fonts-on-osx-10-9-3-iterm2-chrome
