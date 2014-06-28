@@ -4,6 +4,7 @@
 
 2. Clone this repo to into your home folder.
     - git clone https://github.com/msalvadores/dotfiles.git ~/.dotfiles
+    - cd ~/.dotfiles; git submodule init; git submodule update
 
 3. Install brew
     - ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
