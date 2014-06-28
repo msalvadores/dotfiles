@@ -16,6 +16,7 @@ ln -s ~/.dotfiles/dots/tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/dots/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/dots/gitignore ~/.gitignore
 ln -s ~/.dotfiles/dots/zshrc ~/.zshrc
+ln -s ~/.dotfiles/dots/.ruby-version ~/.ruby-version
 
 #my custom powerline oh-my-zsh theme
 ln -s ~/.dotfiles/dots/oh-my-zsh/themes/powerline-with-tmux.zsh-theme ~/.oh-my-zsh/themes/powerline-with-tmux.zsh-theme 

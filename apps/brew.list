@@ -36,4 +36,5 @@ solr
 tmux
 reattach-to-user-namespace
 caskroom/cask/brew-cask
+mercurial
 vim --with-python --with-ruby --with-perl --override-system-vim

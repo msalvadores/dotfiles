@@ -30,7 +30,7 @@ defaults write com.apple.dock autohide -boolean true
 defaults write com.apple.dock orientation -string left
 defaults write com.apple.dock mineffect -string genie
 defaults write com.apple.Dock autohide-delay -float 0
-defaults write com.apple.dock tilesize -integer 16
+defaults write com.apple.dock tilesize -integer 22
 defaults write com.apple.dock launchanim -bool false
 
 # Make Dock icons of hidden applications translucent

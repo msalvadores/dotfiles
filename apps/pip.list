@@ -1,3 +1,4 @@
+ipython
 virtualenv
 virtualenvwrapper
 git+git://github.com/Lokaltog/powerline

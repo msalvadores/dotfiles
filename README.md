@@ -27,3 +27,7 @@
 For patched fonts follow instructions here:
 
 http://superuser.com/questions/762345/powerline-patched-fonts-on-osx-10-9-3-iterm2-chrome
+
+Go import command is used in vim
+
+go get code.google.com/p/go.tools/cmd/goimports
