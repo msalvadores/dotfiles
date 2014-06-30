@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+green='\e[0;32m'
+blue='\e[0;34m'
+red='\e[0;31m'
+NC='\e[0m' # No Color
+
+PROJECTS=("sparql-client" "goo" "ontologies_linked_data" "ontologies_api" "ncbo_cron" "ncbo_annotator")
+for (( i = 1; i <= $#PROJECTS; i++ ))
+do
+    if [[ $1 = "branches" ]];then
+        git_cmd="cd $BIOPORTAL_WS/$PROJECTS[i]; git branch"
+        echo -e "${blue}$PROJECTS[i]${NC} at "
+        eval ${git_cmd}
+    fi
+    if [[ $1 = "cmd" ]];then
+        git_cmd="cd $BIOPORTAL_WS/$PROJECTS[i]; $2"
+        echo -n "Running git command on "
+        echo -e "${blue}$PROJECTS[i]${NC}"
+        eval ${git_cmd}
+    fi
+done
