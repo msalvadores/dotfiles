@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+green='\e[0;32m'
+blue='\e[0;34m'
+red='\e[0;31m'
+yellow='\e[1;33m'
+
+NC='\e[0m' # No Color
+
+PROJECTS=("sparql-client" "goo" "ontologies_linked_data" "ontologies_api" "ncbo_cron" "ncbo_annotator")
+for (( i = 1; i <= $#PROJECTS; i++ ))
+do
+    if [[ $1 = "local" ]];then
+        bundle_cmd="bundle config local.$PROJECTS[i] $BIOPORTAL_WS/$PROJECTS[i]"
+        eval ${bundle_cmd}
+    fi
+    if [[ $1 = "update" ]];then
+        echo -e "${yellow}Running bundle update on $PROJECTS[i]${NC}"
+        bundle_cmd="cd $BIOPORTAL_WS/$PROJECTS[i] && bundle update"
+        eval ${bundle_cmd}
+    fi
+done
