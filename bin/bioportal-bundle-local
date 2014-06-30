@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+PROJECTS=("sparql-client" "goo" "ontologies_linked_data" "ontologies_api" "ncbo_cron" "ncbo_annotator")
+for (( i = 1; i <= $#PROJECTS; i++ ))
+do
+    bundle_cmd="bundle config local.$PROJECTS[i] $BIOPORTAL_WS/$PROJECTS[i]"
+    eval ${bundle_cmd}
+done
