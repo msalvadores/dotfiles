@@ -25,12 +25,12 @@ if [[ $1 = "start" ]];then
         tmux send-keys -t "$SNAME:1" "$FSTORE_START[$i]" C-m
     done
     tmux split-window -t "$SNAME:1" -v 
-    tmux send-keys -t "$SNAME:1" "killall redis-server" C-m
+    tmux send-keys -t "$SNAME:1" "cd $BASE" C-m
     tmux send-keys -t "$SNAME:1" "rm dump.rdb" C-m
     tmux send-keys -t "$SNAME:1" "redis-server" C-m
 
     tmux split-window -t "$SNAME:1" -v 
-    tmux send-keys -t "$SNAME:1" "cd /usr/local/Cellar/solr/4.7.2/libexec/ncbo" C-m
+    tmux send-keys -t "$SNAME:1" "cd $NCBO_SOLR" C-m
     tmux send-keys -t "$SNAME:1" "java -jar start.jar" C-m
 
     tmux select-window -t "$SNAME:1"
