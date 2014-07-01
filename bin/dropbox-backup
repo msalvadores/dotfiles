@@ -2,8 +2,25 @@
 
 green='\e[0;32m'
 blue='\e[0;34m'
+red='\e[0;31m'
 NC='\e[0m' # No Color
 
-cp $1 ~/Dropbox/backups/
-echo -e "file ${green}$1${NC} saved in ${blue}~/Dropbox/backups${NC}"
+if [[ $1 = "link" ]];then
+    rp=$(realpath $2)
+    cd ~/Dropbox/backups/
+    ln -s $rp
+    if (( $? == 0 ));then
+        echo -e "file ${green}$rp${NC} linked in ${blue}~/Dropbox/backups${NC}"
+    else
+        echo -e "file ${red}$rp${NC} not linked in ${blue}~/Dropbox/backups${NC}"
+    fi
+    cd -
+else
+    if [[ $1 = "copy" ]];then
+        cp $2 ~/Dropbox/backups/
+        echo -e "file ${green}$1${NC} copied to ${blue}~/Dropbox/backups${NC}"
+    else
+        echo -e "Usage: dropbox-backup <copy|link> file"
+    fi
+fi
 
