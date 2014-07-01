@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+green='\e[0;32m'
+blue='\e[0;34m'
+NC='\e[0m' # No Color
+
+cp $1 ~/Dropbox/backups/
+echo -e "file ${green}$1${NC} saved in ${blue}~/Dropbox/backups${NC}"
+
