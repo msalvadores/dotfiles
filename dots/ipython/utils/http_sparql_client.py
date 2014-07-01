@@ -150,7 +150,7 @@ def query(q,epr,f='application/json',api_key=None,soft_limit=-1,rules="NONE"):
         params["rules"]=rules
         params = urllib.urlencode(params)
         opener = urllib2.build_opener(urllib2.HTTPHandler)
-        print "request: " + epr+'?'+params
+        #print "request: " + epr+'?'+params
         request = urllib2.Request(epr+'?'+params)
         request.add_header('Accept', f)
         request.get_method = lambda: 'GET'
