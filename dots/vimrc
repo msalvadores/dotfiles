@@ -95,6 +95,8 @@ let g:gofmt_command = "goimports"
 
 "enable nice airline status line
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tmuxline#enabled = 0
 let g:airline_theme='badwolf'
 let g:airline_powerline_fonts = 1
