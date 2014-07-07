@@ -13,7 +13,7 @@ path = sys.argv[2]
 nums = list()
 with open(path) as finput:
     for line in finput:
-        n = float(line.strip())
+        n = float(line.strip().split("\t")[0])
         nums.append(n)
     finput.close()
 nums = sorted(nums,reverse=False)
@@ -23,6 +23,9 @@ total = sum(nums)
 top = 100 - int(sys.argv[1])
 top_sum = sum(nums[perc_index:])
 top_perc = (top_sum/total) * 100.0
-print "len %d sum %.3f "%(len(nums),total)
+print "size %d"%len(nums)
+print "avg %.3f "%(total/float(len(nums)))
+print "max %.3f "%nums[-1]
+print "sum %.3f "%(total)
 print "perc %s at %.3f"%(sys.argv[1],nums[perc_index])
 print "top %d%% sum %.3f (%.1f%%)"%(top,top_sum,top_perc)
