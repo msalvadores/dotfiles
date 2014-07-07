@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+green='\e[0;32m'
+NC='\e[0m' # No Color
+
+if [[ $1 == '' ]];then
+    echo -e "${green}Running tests matching '.*'${NC}"
+    pattern='.*'
+else
+    echo -e "${green}Running tests matching '$1'${NC}"
+    pattern=$1
+fi
+
+go test -check.v -check.f $pattern
