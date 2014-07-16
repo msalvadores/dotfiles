@@ -7,9 +7,16 @@ pathwatcher.new(os.getenv("HOME") .. "/.hydra/", hydra.reload):start()
 autolaunch.set(true)
 
 menu.show(function()
+    local updatetitles = {[true] = "Install Update", [false] = "Check for Update..."}
+    local updatefns = {[true] = updates.install, [false] = checkforupdates}
+    local hasupdate = (updates.newversion ~= nil)
+
     return {
+      {title = "Reload Config", fn = hydra.reload},
+      {title = "Open REPL", fn = repl.open},
       {title = "About Hydra", fn = hydra.showabout},
       {title = "-"},
+      {title = updatetitles[hasupdate], fn = updatefns[hasupdate]},
       {title = "Quit", fn = os.exit},
     }
 end)
@@ -56,7 +63,10 @@ function checkforupdates()
   -- I'm fine with making this a global; then I can call it in the REPL if I want.
   updates.check(function(hasone)
       if hasone then
-        notify.show("Hydra update available", "Go download it!", "Click here to see the release notes.", "hasupdate")
+        notify.show("Hydra update available", 
+                    "Go download it!", 
+                    "Click here to see the release notes.", 
+                    "hasupdate")
       end
   end)
 end
