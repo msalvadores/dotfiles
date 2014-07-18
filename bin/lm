@@ -1,0 +1,3 @@
+#!/bin/zsh
+# list the latest modified files in the folder
+find . -type f -exec ls -tr {} + | tail | ack -v swp
