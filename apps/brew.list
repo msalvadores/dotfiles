@@ -38,4 +38,5 @@ reattach-to-user-namespace
 caskroom/cask/brew-cask
 mercurial
 wrk
+valgrind
 vim --with-python --with-ruby --with-perl --override-system-vim
