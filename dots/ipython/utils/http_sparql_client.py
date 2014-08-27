@@ -1,8 +1,5 @@
 #An standalone API for 4store
 
-#prd_map.pq("""SELECT (count(?s) as ?c) WHERE { GRAPH <http://purl.bioontology.org/mapping/rest> { ?s a <http://protege.stanford.edu/ontologies/mappings/mappings.rdfs#One_To_One_Mapping> . }}""")
-#1064
-
 import sys
 import urllib,urllib2
 import traceback
