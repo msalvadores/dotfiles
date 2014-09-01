@@ -39,4 +39,5 @@ caskroom/cask/brew-cask
 mercurial
 wrk
 valgrind
+berkeley-db4
 vim --with-python --with-ruby --with-perl --override-system-vim
