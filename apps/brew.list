@@ -41,4 +41,5 @@ wrk
 valgrind
 berkeley-db4
 node
+caffeine
 vim --with-python --with-ruby --with-perl --override-system-vim
