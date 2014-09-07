@@ -40,4 +40,5 @@ mercurial
 wrk
 valgrind
 berkeley-db4
+node
 vim --with-python --with-ruby --with-perl --override-system-vim
