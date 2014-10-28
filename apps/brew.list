@@ -39,7 +39,6 @@ reattach-to-user-namespace
 caskroom/cask/brew-cask
 mercurial
 wrk
-valgrind
 berkeley-db4
 node
 caffeine
