@@ -15,6 +15,7 @@ htop-osx
 jq
 libxml2
 lua
+luarocks
 maven
 mysql
 ncdu
