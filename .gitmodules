@@ -7,9 +7,6 @@
 [submodule "dots/vim/bundle/vim-colors"]
 	path = dots/vim/bundle/vim-colors
 	url = https://github.com/flazz/vim-colorschemes
-[submodule "dots/vim/bundle/vim-golang"]
-	path = dots/vim/bundle/vim-golang
-	url = https://github.com/jnwhiteh/vim-golang
 [submodule "dots/vim/bundle/vim-syntastic"]
 	path = dots/vim/bundle/vim-syntastic
 	url = https://github.com/scrooloose/syntastic
