@@ -12,16 +12,20 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
-set hlsearch
-inoremap JJ <ESC>
-noremap QQ <ESC>:q<CR>
-noremap WW <ESC>:w<CR>
-inoremap WW <ESC>:w<CR>
-noremap TT <ESC>:tabnew<CR>ww
-noremap FF <ESC>:Fmt<CR>
+
+:nmap \p :set paste!<CR>
+:nmap \l :setlocal number!<CR>
+:nmap \t <ESC>:tabnew<CR>ww
+:nmap \q <ESC>:q<CR>
+:nmap \w <ESC>:w<CR>
+:nmap \f <ESC>:Fmt<CR>
+
+"linewise up/down
+:nmap j gj
+:nmap k gk
 
 "nerd tree ctrl-d toggle
-map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+map \d :execute 'NERDTreeToggle ' . getcwd()<CR>
 let NERDTreeIgnore = ['\.pyc$','\.class$','\.swp$']
 
 set wildignore+=*.swp,*.pyc,*.class
@@ -29,13 +33,6 @@ set wildignore+=*.swp,*.pyc,*.class
 "search across files in current project - selected text
 command GF :execute 'vimgrep /'.expand('<cword>').'/j '.expand(' **/*.c **/*.h **/*.java **/*.py **/*.js **/*.html **/*.rb') | copen
 
-
-" Make up/down arrows move by display lines instead of physical lines
-nnoremap <Up> gk
-nnoremap <Down> gj
-
-" Overload Control+L to also clear  search highlighting
-nnoremap <C-L> :nohlsearch<CR><C-L>
 
 " Center display line after searches "
 nnoremap n   nzz
@@ -46,16 +43,18 @@ nnoremap g* g*zz
 nnoremap g# g#z
 
 " Search for current word in new window
-nnoremap <Leader>v :let @/=expand("<cword>")<Bar>split<Bar>normal n<CR>
-nnoremap <Leader>V :let @/='\<'.expand("<cword>").'\>'<Bar>split<Bar>normal n<CR>
+:nmap \v :let @/=expand("<cword>")<Bar>split<Bar>normal n<CR>
+:nmap \V :let @/='\<'.expand("<cword>").'\>'<Bar>split<Bar>normal n<CR>
 
 "delete no-yank
 nnoremap R "_d
 
-"inc search
+"search options
+set hlsearch
 set incsearch
-set ignorecase    " ignore case when searching
+set ignorecase
 set smartcase
+:nmap \l :nohlsearch<CR>
 
 "color accuracy in remote ssh terminals
 " revisit http://vim.wikia.com/wiki/Switch_color_schemes
@@ -77,8 +76,7 @@ autocmd BufNewFile,BufRead *.rb set tabstop=2
 autocmd BufNewFile,BufRead *.rb set shiftwidth=2
 
 "ask for reload
-":au FileChangedShell * echo "Warning: File changed on disk"
-"
+:au FileChangedShell * echo "Warning: File changed on disk"
 
 set backspace=2 " make backspace work like most other apps
 
@@ -87,11 +85,7 @@ set backspace=2 " make backspace work like most other apps
 let g:syntastic_always_populate_loc_list=1
 
 "use the goimports tools instead default fmt
-let g:gofmt_command = "goimports"
-
-"format Go commands on save
-"autocmd FileType go autocmd BufWritePre <buffer> Fmt
-"
+let g:go_fmt_command = "goimports"
 
 "enable nice airline status line
 let g:airline#extensions#tabline#enabled = 1
