@@ -25,3 +25,6 @@
 [submodule "dots/vim/bundle/vim-go"]
 	path = dots/vim/bundle/vim-go
 	url = https://github.com/fatih/vim-go
+[submodule "dots/vim/bundle/tagbar"]
+	path = dots/vim/bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
