@@ -116,6 +116,7 @@ noremap   <Right>  <NOP>
 
 "golang vim settings
 let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
 au FileType go nmap \d <Plug>(go-def-vertical)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
@@ -125,3 +126,4 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>b :Tagbar<CR>
+
