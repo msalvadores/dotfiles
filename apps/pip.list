@@ -5,3 +5,4 @@ git+git://github.com/Lokaltog/powerline
 MySQL-python
 requests
 pyyaml
+psycopg2
