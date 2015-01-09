@@ -4,7 +4,7 @@ import sys
 import urllib,urllib2
 import traceback
 import pdb
-import time                                                
+import time
 import json
 import os
 import subprocess
@@ -17,7 +17,7 @@ PREFIX dct:  <http://purl.org/dc/terms/>
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
 PREFIX bio:  <http://purl.org/vocab/bio/0.1/>
-PREFIX meta: <http://bioportal.bioontology.org/metadata/def/> 
+PREFIX meta: <http://bioportal.bioontology.org/metadata/def/>
 PREFIX graphs: <http://purl.bioontology.org/def/graphs/>
 PREFIX omv: <http://omv.ontoware.org/2005/05/ontology#>
 PREFIX maps: <http://protege.stanford.edu/ontologies/mappings/mappings.rdfs#>
@@ -40,13 +40,17 @@ class SPARQL:
         return query(PREFIXES+q,self.epr,f='text/plain',api_key=self.api_key)
     def get_data_epr(self):
         return "/".join(self.epr.split("/")[0:-2])+"/data/"
-    def pq(self,q,soft_limit=-1,rules="NONE"):
+
+    def pqs(self,q,soft_limit=-1,rules="NONE"):
         self.history.append(q)
         t0 = time.time()
         res = query(PREFIXES+q,self.epr,f='text/plain',api_key=self.api_key,soft_limit=soft_limit,rules=rules)
         tf = time.time()
-        print res
         print "elapse %.3f"%(tf-t0)
+        return s
+
+    def pq(self,q,soft_limit=-1,rules="NONE"):
+        print self.pqs(q,soft_limit=soft_limit,rules=rules)
 
     def query_as_text(self,q):
         self.history.append(q)
@@ -80,7 +84,7 @@ class SPARQL:
         subs=len(self.subjects_in_graph(g)),
         objs=len(self.objects_in_graph(g)),
         types=len(self.types_in_graph(g)))
-    
+
     def assert_data_in_graph(self,graph_uri,data,content_format,flushGraph=False):
         return assert_data_in_graph(graph_uri,data,self.get_data_epr(),content_format,flushGraph=flushGraph,queryEpr=self.epr)
 
@@ -102,7 +106,7 @@ class SPARQL:
     def graphs(self):
         query = "SELECT DISTINCT ?g WHERE { GRAPH ?g { ?s ?p ?o } } LIMIT 100"
         self.pq(query)
-        
+
 
 def timeit(method):
 
@@ -158,7 +162,7 @@ def query(q,epr,f='application/json',api_key=None,soft_limit=-1,rules="NONE"):
         return content
     except Exception, e:
         traceback.print_exc(file=sys.stdout)
-        raise e 
+        raise e
 
 def delete_graph(graph,epr):
     delete_with_curl = ["curl","-s","-X","DELETE","%s%s"%(epr,graph)]
@@ -173,13 +177,13 @@ def assert_file_in_graph(graph_uri,file_path,
    if flushGraph:
        ret = delete_graph(graph_uri,epr)
        if ret <> 0:
-          raise Exception, "Unable to delete %s, error message [%s]"%(graph_uri,err) 
+          raise Exception, "Unable to delete %s, error message [%s]"%(graph_uri,err)
 
        if queryEpr:
             sq=SPARQL(queryEpr)
             if sq.count_in_graph(graph_uri) <> 0:
                 raise Exception, "Count after delete > 0 (%s)"%graph_uri
-   command = None 
+   command = None
    if flushGraph:
        command = ["curl","-s",
                   "-T",file_path,
