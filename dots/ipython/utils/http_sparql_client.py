@@ -47,7 +47,7 @@ class SPARQL:
         res = query(PREFIXES+q,self.epr,f='text/plain',api_key=self.api_key,soft_limit=soft_limit,rules=rules)
         tf = time.time()
         print "elapse %.3f"%(tf-t0)
-        return s
+        return res
 
     def pq(self,q,soft_limit=-1,rules="NONE"):
         print self.pqs(q,soft_limit=soft_limit,rules=rules)
