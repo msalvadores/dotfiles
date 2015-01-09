@@ -113,6 +113,11 @@ noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
+"remove trailing in python and ruby
+autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.rb :%s/\s\+$//e
+autocmd BufWritePre *.sh :%s/\s\+$//e
+
 
 "golang vim settings
 let g:go_fmt_command = "goimports"
