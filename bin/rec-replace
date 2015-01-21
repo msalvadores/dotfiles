@@ -1,0 +1,10 @@
+#!/bin/zsh
+if [[ $1 == '' ]];then
+    echo "use rec-replace string1 string2"
+    exit
+fi
+if [[ $2 == '' ]];then
+    echo "use rec-replace string1 string2"
+    exit
+fi
+find . -not -path '*/\.*' -type f -exec sed -i '' s/$1/$2/g {} +
