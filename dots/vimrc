@@ -132,3 +132,4 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>b :Tagbar<CR>
 
+:vmap R :!psql -d $PSDB -e<enter>
