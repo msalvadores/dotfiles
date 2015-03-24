@@ -13,6 +13,7 @@ set shiftwidth=4
 set expandtab
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
 
+:nmap \f :echo @%<CR>
 :nmap \t :tabnew<CR>
 :nmap \p :set paste!<CR>
 :nmap \l :setlocal number!<CR>
@@ -65,7 +66,8 @@ set t_Co=256
 colorscheme jelleybeans
 
 if has('statusline')
-	set laststatus=2
+    "set laststatus=2
+    set laststatus=0
 
 	" Broken down into easily includeable segments
 	set statusline=%<%f\    " Filename
@@ -91,8 +93,8 @@ let g:syntastic_always_populate_loc_list=1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tmuxline#enabled = 0
-let g:airline_theme='badwolf'
+let g:airline#extensions#tmuxline#enabled = 1
+let g:airline_theme='sol'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 if !exists('g:airline_symbols')
