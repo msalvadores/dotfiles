@@ -41,7 +41,7 @@ ulimit -S -n 2048
 export EDITOR='vim'
 
 
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export PYTHONPATH=.:~/.dotfiles/dots/ipython/utils
 export PATH=$PATH:~/.dotfiles/bin
 

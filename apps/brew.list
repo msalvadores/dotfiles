@@ -16,7 +16,6 @@ jq
 libxml2
 lua
 luarocks
-maven
 mysql
 ncdu
 openssl
@@ -41,5 +40,4 @@ mercurial
 wrk
 berkeley-db4
 node
-caffeine
 vim --with-python --with-ruby --with-perl --with-lua --override-system-vim
