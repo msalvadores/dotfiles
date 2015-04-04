@@ -3,7 +3,7 @@
 1. Install XCODE and XCODE command tools
 
 2. Clone this repo to into your home folder.
-    - git clone https://github.com/msalvadores/dotfiles.git ~/.dotfiles
+    - git clone git@github.com:msalvadores/dotfiles.git ~/.dotfiles
     - cd ~/.dotfiles; git submodule init; git submodule update
 
 3. Install brew
