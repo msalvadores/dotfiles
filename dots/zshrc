@@ -34,9 +34,8 @@ eval "$(rbenv init -)"
 export WORKON_HOME=~/Envs
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 source /usr/local/bin/virtualenvwrapper.sh
-
-#4store needs to open a lot of files
-ulimit -S -n 2048
+export GOPATH=~/work/lexigram/goland
+export PATH=$PATH:$GOPATH/bin
 
 export EDITOR='vim'
 
