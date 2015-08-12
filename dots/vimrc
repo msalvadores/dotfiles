@@ -34,6 +34,9 @@ map \d :execute 'NERDTreeToggle ' . getcwd()<CR>
 let NERDTreeIgnore = ['\.pyc$','\.class$','\.swp$']
 
 set wildignore+=*.swp,*.pyc,*.class
+set wildignore+=python_envs
+set wildignore+=build
+set wildignore+=assets
 
 "search across files in current project - selected text
 command GF :execute 'vimgrep /'.expand('<cword>').'/j '.expand(' **/*.c **/*.h **/*.java **/*.py **/*.js **/*.html **/*.rb') | copen
@@ -63,7 +66,8 @@ set smartcase
 "color accuracy in remote ssh terminals
 " revisit http://vim.wikia.com/wiki/Switch_color_schemes
 set t_Co=256
-colorscheme jelleybeans
+"colorscheme jelleybeans
+colorscheme Tomorrow-Night-Bright
 
 if has('statusline')
     "set laststatus=2
@@ -84,7 +88,6 @@ autocmd BufNewFile,BufRead *.rb set shiftwidth=2
 :au FileChangedShell * echo "Warning: File changed on disk"
 
 set backspace=2 " make backspace work like most other apps
-
 
 "update syntastic errors on save
 let g:syntastic_always_populate_loc_list=1
