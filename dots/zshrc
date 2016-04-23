@@ -58,3 +58,5 @@ alias wget="curl -OL"
 if [[ -f ~/.private-vars && -r ~/.private-vars ]]; then
     source ~/.private-vars
 fi
+
+alias demo_box="ssh -L 4000:localhost:9200 -L 3000:localhost:3333 -L 2000:localhost:5000 root@104.239.241.158"

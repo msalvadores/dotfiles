@@ -28,3 +28,9 @@
 [submodule "dots/vim/bundle/tagbar"]
 	path = dots/vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
+[submodule "bundle/vim-airline-themes"]
+	path = bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "dots/vim/bundle/vim-airline-themes"]
+	path = dots/vim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
