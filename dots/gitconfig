@@ -40,3 +40,5 @@
 	required = true
 [branch]
 	autosetuprebase = always
+[pull]
+	rebase = false
