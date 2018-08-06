@@ -32,12 +32,9 @@ export HISTSIZE=10000
 
 unsetopt correct_all
 
-export PATH=$PATH:$GOPATH/bin
-
-export EDITOR='vim'
+export EDITOR='nvim'
 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export PYTHONPATH=.:~/.dotfiles/dots/ipython/utils
 export PATH=$PATH:~/.dotfiles/bin
 export LXG_PREFIX=$HOME/work/lexigram/v2
 
