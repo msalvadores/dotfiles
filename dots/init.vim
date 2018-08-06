@@ -12,7 +12,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mkitt/tabline.vim'
 Plug 'neovimhaskell/haskell-vim'
-" Plug '~/tmp/nplug'
+Plug 'Alok/notational-fzf-vim'
 
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
@@ -176,3 +176,7 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 
 nnoremap <tab> :call fzf#vim#ag(expand('<cword>'))<CR>
 "map <CR> :tabnew<CR>:Ag 
+"
+let g:nv_search_paths = ['~/Dropbox/notes']
+let g:nv_use_short_pathnames = 1
+let g:nv_default_extension = '.md'
