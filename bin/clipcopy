@@ -1,1 +1,0 @@
-cat ~/Dropbox/clipboard/clip.txt | pbcopy

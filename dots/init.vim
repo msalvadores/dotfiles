@@ -1,4 +1,29 @@
-call pathogen#infect()
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'junegunn/vim-easy-align'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-syntastic/syntastic'
+Plug 'airblade/vim-gitgutter'
+Plug 'mhartington/oceanic-next'
+Plug 'bfredl/nvim-ipy'
+Plug 'scrooloose/nerdcommenter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'mkitt/tabline.vim'
+Plug 'neovimhaskell/haskell-vim'
+" Plug '~/tmp/nplug'
+
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit',
+      \ 'ctrl-t': 'tab split'
+      \ }
+nnoremap <c-p> :FZF<cr>
+let $FZF_DEFAULT_COMMAND = 'ag -f -l -g "" --ignore-dir=venv'
+call plug#end()
+
+ 
 syntax enable
 filetype plugin indent on
 
@@ -11,7 +36,10 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set clipboard=unnamed
+
 autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 :nmap \f :echo @%<CR>
 :nmap \t :tabnew<CR>
@@ -63,11 +91,7 @@ set ignorecase
 set smartcase
 :nmap \ns :nohlsearch<CR>
 
-"color accuracy in remote ssh terminals
-" revisit http://vim.wikia.com/wiki/Switch_color_schemes
-set t_Co=256
-"colorscheme jelleybeans
-colorscheme Tomorrow-Night-Bright
+colorscheme OceanicNext
 
 if has('statusline')
     "set laststatus=2
@@ -92,19 +116,6 @@ set backspace=2 " make backspace work like most other apps
 "update syntastic errors on save
 let g:syntastic_always_populate_loc_list=1
 
-"enable nice airline status line
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tmuxline#enabled = 1
-let g:airline_theme='sol'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-if !exists('g:airline_symbols')
- let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-
 "low timeout for escaping
 set timeoutlen=1000 ttimeoutlen=50
 set cursorline
@@ -122,22 +133,22 @@ noremap   <Right>  <NOP>
 autocmd BufWritePre *.py :%s/\s\+$//e
 autocmd BufWritePre *.rb :%s/\s\+$//e
 autocmd BufWritePre *.sh :%s/\s\+$//e
+autocmd BufWritePre *.sql :%s/\s\+$//e
 
+":vmap R :!psql -U lexigram -d $PSDB -e<enter>
+:vmap R :!psql $VIMPSDB -e<enter>
 
-"golang vim settings
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-au FileType go nmap \d <Plug>(go-def-vertical)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>b :Tagbar<CR>
+set timeoutlen=500 ttimeoutlen=0
 
-:vmap R :!psql -d $PSDB -e<enter>
+map <Leader>r ?-- start<CR>jV/;<CR>R\ns
+
+map <Leader>c <Esc>1gtGGi
+
+map [q :cprevious<CR>
+map ]q :cnext<CR>
+
+map <c-l> <Esc>:BLines<CR>
+map <c-L> <Esc>:Lines<CR>
 
 " The Silver Searcher
 if executable('ag')
@@ -153,3 +164,15 @@ endif
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" terminal maps
+:tnoremap <Esc> <C-\><C-n>
+:tnoremap jj <C-\><C-n>
+
+"Ipy
+let g:nvim_ipy_perform_mappings = 0
+map <silent> <c-s>   <Plug>(IPy-Run)
+hi CursorLine term=bold cterm=bold guibg=Grey40
+
+nnoremap <tab> :call fzf#vim#ag(expand('<cword>'))<CR>
+"map <CR> :tabnew<CR>:Ag 

@@ -7,14 +7,11 @@ antigen bundle lein
 antigen bundle copydir
 antigen bundle copyfile
 antigen bundle osx
-antigen bundle command-not-found
 antigen bundle tmux
 
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle zsh-users/zsh-completions src
-antigen bundle MikeDacre/cdbk
-antigen bundle bbenne10/goenv
 
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
@@ -26,9 +23,10 @@ antigen apply
 export TERM="xterm-256color"
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 alias ll='ls -lah'
-alias h='history | grep'
+alias h='history | fzf'
 
 export HISTSIZE=10000
 
@@ -38,7 +36,6 @@ export PATH=$PATH:$GOPATH/bin
 
 export EDITOR='vim'
 
-
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export PYTHONPATH=.:~/.dotfiles/dots/ipython/utils
 export PATH=$PATH:~/.dotfiles/bin
@@ -47,6 +44,67 @@ export LXG_PREFIX=$HOME/work/lexigram/v2
 #useful alias
 alias wget="curl -OL"
 
+alias stage-lexigraph="ssh -L 54320:lxg-stage-lexigraphdb:5432 lxgdeploy@stage-gate.lexigram.io"
+
 if [[ -f ~/.private-vars && -r ~/.private-vars ]]; then
     source ~/.private-vars
 fi
+
+export FEDITOR='nvim'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#fuzzy change dir
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+#fuzzy edit file
+fe() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${FEDITOR:-vim} "${files[@]}"
+}
+
+# fh repeat history
+fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+# fuzzy kill
+# fkill - kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
+#docker
+alias dco='docker-compose'
+
+alias dcb='docker-compose build'
+alias dce='docker-compose exec'
+alias dcps='docker-compose ps'
+alias dcrestart='docker-compose restart'
+alias dcrm='docker-compose rm'
+alias dcr='docker-compose run'
+alias dcstop='docker-compose stop'
+alias dcup='docker-compose up'
+alias dcdn='docker-compose down'
+alias dcl='docker-compose logs'
+alias dclf='docker-compose logs -f'
+
+# Support for rbenv
+eval "$(rbenv init - zsh)"
+
+# Support for pyenv
+eval "$(pyenv init -)"
+
+export LXG_DOCKER_REGISTRY=lxggxmdygkd16zudockerregistry
