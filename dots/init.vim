@@ -180,3 +180,6 @@ nnoremap <tab> :call fzf#vim#ag(expand('<cword>'))<CR>
 let g:nv_search_paths = ['~/Dropbox/notes']
 let g:nv_use_short_pathnames = 1
 let g:nv_default_extension = '.md'
+
+"paste end of line with ,
+nmap , $p

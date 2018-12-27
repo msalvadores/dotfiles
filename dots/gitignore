@@ -5,3 +5,8 @@ TAGS
 tags
 Session.vim
 .sw[a-z]
+.mypy_cache/
+.venv/
+.vscode/
+.env
+.pytest_cache/

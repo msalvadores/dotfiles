@@ -27,6 +27,7 @@ export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 
 alias ll='ls -lah'
 alias h='history | fzf'
+alias act='cd ~/work/lexigram/active'
 
 export HISTSIZE=10000
 
@@ -54,3 +55,8 @@ eval "$(rbenv init - zsh)"
 
 # Support for pyenv
 eval "$(pyenv init -)"
+export PATH="/usr/local/opt/node@10/bin:$PATH"
+
+alias chrome="open -a 'Google Chrome'"
+alias vscode="open -a 'Visual Studio Code'"
+

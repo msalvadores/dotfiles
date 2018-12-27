@@ -43,3 +43,5 @@
 	autosetuprebase = always
 [pull]
 	rebase = false
+[core]
+	excludesfile = /Users/msalvadores/.gitignore
